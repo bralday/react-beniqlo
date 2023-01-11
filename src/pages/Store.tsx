@@ -1,8 +1,29 @@
 import { Col, Row } from "react-bootstrap";
 import { StoreItem } from "../components/StoreItem";
-import storeItems from "../data/items.json"; // will be changed to api later.
+import { useStore } from "../context/StoreContext";
 
 export function Store() {
+  const { storeItems, isLoading, httpError } = useStore();
+  const loadingGif = "imgs/loading.gif";
+
+  if (isLoading) {
+    return (
+      <section>
+        <div className="mx-auto text-center">
+          <img src={loadingGif} style={{ width: "75px", height: "75px" }} />
+        </div>
+      </section>
+    );
+  }
+
+  if (httpError) {
+    return (
+      <section>
+        <p>{httpError}</p>
+      </section>
+    );
+  }
+
   return (
     <>
       <h1>Store</h1>
