@@ -1,8 +1,10 @@
-import { Offcanvas, Stack } from "react-bootstrap";
+import { useState } from "react";
+import { Button, Offcanvas, Stack } from "react-bootstrap";
 import { useShoppingCart } from "../context/ShoppingCartContext";
 import { useStore } from "../context/StoreContext";
 import { formatCurrency } from "../utilities/formatCurrency";
 import { CartItem } from "./CartItem";
+import { Checkout } from "./Checkout";
 
 type ShoppingCartProps = {
   isOpen: boolean;
@@ -12,16 +14,19 @@ export function ShoppingCart({ isOpen }: ShoppingCartProps) {
   const { closeCart, cartItems } = useShoppingCart();
   const { storeItems } = useStore();
 
+  const hasItems = cartItems.length > 0;
+
   return (
     <Offcanvas show={isOpen} onHide={closeCart} placement="end">
       <Offcanvas.Header closeButton>
-        <Offcanvas.Title>Cart</Offcanvas.Title>
+        <Offcanvas.Title>Your Cart</Offcanvas.Title>
       </Offcanvas.Header>
       <Offcanvas.Body>
         <Stack gap={3}>
           {cartItems.map((item) => (
             <CartItem key={item.id} {...item} />
           ))}
+          {!hasItems && <p className="text-center">No items in cart...</p>}
           <div className="ms-auto fw-bold fs-5">
             Total{" "}
             {formatCurrency(
@@ -31,6 +36,8 @@ export function ShoppingCart({ isOpen }: ShoppingCartProps) {
               }, 0)
             )}
           </div>
+
+          {hasItems && <Checkout />}
         </Stack>
       </Offcanvas.Body>
     </Offcanvas>
