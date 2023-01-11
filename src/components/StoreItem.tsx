@@ -15,7 +15,8 @@ export function StoreItem({ id, name, price, imgUrl }: StoreItemProps) {
     increaseCartQuantity,
     decreaseCartQuantity,
     removeFromCart,
-  } = useShoppingCart();
+  } = useShoppingCart(); // useContext
+
   const quantity = getItemQuantity(id);
 
   return (
