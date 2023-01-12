@@ -43,7 +43,7 @@ export function CartItem({ id, quantity }: CartItemProps) {
         </div>
       </div>
       <Button
-        variant="outline-danger"
+        variant="outline-danger btn-block"
         size="sm"
         onClick={() => decreaseCartQuantity(item.id)}
       >
