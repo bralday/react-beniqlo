@@ -14,7 +14,7 @@ function App() {
         <Navbar /> {/* navbar component */}
         <Container className="mb-4">
           <Routes>
-            <Route path="/" element={<Home />} />{" "}
+            <Route path="/" element={<Store />} />{" "}
             {/* path = path, element = component */}
             <Route path="/store" element={<Store />} />
             <Route path="/about" element={<About />} />
