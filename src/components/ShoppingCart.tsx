@@ -1,11 +1,12 @@
 import React from "react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Button, Offcanvas, Stack } from "react-bootstrap";
 import { useShoppingCart } from "../context/ShoppingCartContext";
 import { useStore } from "../context/StoreContext";
 import { formatCurrency } from "../utilities/formatCurrency";
 import { CartItem } from "./CartItem";
 import { Checkout } from "./Checkout";
+import classes from "./ShoppingCart.module.css";
 
 type ShoppingCartProps = {
   isOpen: boolean;
@@ -40,6 +41,32 @@ export function ShoppingCart({ isOpen }: ShoppingCartProps) {
 
   const hasItems = cartItems.length > 0;
 
+  const orderSuccess = (
+    <div className={classes["sucess-wrapper text-center"]}>
+      <div className={classes.success}>
+        <h2 className="text-center">Thank you for your order!</h2>
+        <p className={classes["email-msg"]}>
+          Check your email inbox for the receipt
+        </p>
+        <p className={classes.description}>
+          If you have any questions please email{" "}
+          <a className={classes.email} href="mailto:order@example.com">
+            order@example.com
+          </a>
+        </p>
+        <Button
+          onClick={() => {
+            closeCart(), setDidSubmit(false);
+          }}
+          type="button"
+          className="btn btn-secondary"
+        >
+          Continue Shopping
+        </Button>
+      </div>
+    </div>
+  );
+
   return (
     <Offcanvas
       show={isOpen}
@@ -59,7 +86,7 @@ export function ShoppingCart({ isOpen }: ShoppingCartProps) {
           {!hasItems && !didSubmit && (
             <p className="text-center">No items in cart...</p>
           )}
-          {didSubmit && <p className="text-center">Order was sent!</p>}
+          {didSubmit && orderSuccess}
           {!didSubmit && (
             <div className="ms-auto fw-bold fs-5">
               Total{" "}

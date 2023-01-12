@@ -49,7 +49,6 @@ export function CartItem({ id, quantity }: CartItemProps) {
       >
         -
       </Button>
-      <div> {quantity}</div>
       <Button
         variant="outline-success"
         size="sm"
