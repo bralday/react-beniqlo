@@ -1,6 +1,8 @@
 import { Col, Row } from "react-bootstrap";
 import { StoreItem } from "../components/StoreItem";
 import { useStore } from "../context/StoreContext";
+import Carousel from "react-bootstrap/Carousel";
+import CarouselComponent from "../components/CarouselComponent";
 
 export function Store() {
   const { storeItems, isLoading, httpError } = useStore();
@@ -26,7 +28,8 @@ export function Store() {
 
   return (
     <>
-      <h1>Store</h1>
+      <CarouselComponent />
+      <h1 className="text-center fw-bolder">Store</h1>
       {/* map imported json into individual StoreItem component*/}
       <Row md={2} xs={1} lg={3} className="g-3">
         {storeItems.map((item) => (

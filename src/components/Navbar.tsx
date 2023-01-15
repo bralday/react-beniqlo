@@ -32,13 +32,10 @@ export function Navbar() {
   return (
     <NavbarBs sticky="top" className="navbar navbar-dark bg-dark mb-3 ">
       <Container>
-        <NavbarBs.Brand to="/" as={NavLink}>
+        <NavbarBs.Brand to="/store" as={NavLink}>
           BeniQlo
         </NavbarBs.Brand>
         <Nav className="me-auto">
-          <Nav.Link to="/" as={NavLink}>
-            Home
-          </Nav.Link>
           <Nav.Link to="/store" as={NavLink}>
             Store
           </Nav.Link>
